@@ -17,7 +17,7 @@ use App\Http\Controllers\CursoController;
 
 /*Route::get('/', function () {
     return view('home');
-});*/
+});
 
 Route::get('/', HomeController::class);
 
@@ -28,6 +28,11 @@ Route::get('cursos/create',[CursoController::class, 'create']);
 Route::get('cursos/show',[CursoController::class, 'show']);
 
 Route::get('cursos/edit', [CursoController::class, 'edit']);
+*/
+
+Route::get('/', HomeController::class);
+
+Route::resource('cursos', CursoController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
