@@ -1,0 +1,26 @@
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(public\images\bannerAjustes.png);
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+
+.form-box {
+    width: 950px;
+    height: 900px;
+    position: relative;
+    margin: 6% auto;
+    background: #fff;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+#footer {
+    background: linear-gradient(90deg, #ff105f, #ffad06);
+}
+
+#footer a {
+    color: white;
+}

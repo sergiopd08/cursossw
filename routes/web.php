@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CursoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*Route::get('/', function () {
+    return view('home');
+});*/
+
+Route::get('/', HomeController::class);
+
+Route::get('cursos',[CursoController::class, 'index']);
+
+Route::get('cursos/create',[CursoController::class, 'create']);
+
+Route::get('cursos/show',[CursoController::class, 'show']);
+
+Route::get('cursos/edit', [CursoController::class, 'edit']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
