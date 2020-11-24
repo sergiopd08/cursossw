@@ -20,6 +20,8 @@ class Curso extends Model
         'requisitos'
     ];
 
+    // protected $table = "cursos";
+
     /*
     public function creadores() {
         return $this->belongsTo(Creador::class);
