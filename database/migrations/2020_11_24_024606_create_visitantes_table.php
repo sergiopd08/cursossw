@@ -15,12 +15,10 @@ class CreateVisitantesTable extends Migration
     {
         Schema::create('visitantes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombrePila');
-            $table->string('correo');
-            $table->string('passwd');
             $table->unsignedTinyInteger('edad');
             $table->string('ocupacion', 50);
-            $table->unsignedInteger('saldo')->default(0);
+            $table->unsignedInteger('saldo')->default(0); /*F */
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

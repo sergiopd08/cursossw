@@ -17,7 +17,8 @@ class CreatePagosTable extends Migration
             $table->id();
             $table->unsignedDecimal('monto');
             $table->date('fecha');
-            $table->foreignId('visitante_id')->constrained();
+            $table->foreignId('user_id')->constrained(); /*F*/
+            $table->foreignId('curso_id')->constrained(); /*F*/
             $table->timestamps();
         });
     }
