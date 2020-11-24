@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePagosTable extends Migration
+class CreateCreadorCursoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreatePagosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pagos', function (Blueprint $table) {
-            $table->id();
+        Schema::create('creador_curso', function (Blueprint $table) {
+            $table->foreignId('creador_id')->references('id')->on('creadores');
+            $table->foreignId('curso_id')->constrained();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreatePagosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('creador_curso');
     }
 }

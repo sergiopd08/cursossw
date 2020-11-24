@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCursoUsuarioTable extends Migration
+class CreatePagosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateCursoUsuarioTable extends Migration
      */
     public function up()
     {
-        Schema::create('curso_usuario', function (Blueprint $table) {
+        Schema::create('pagos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedDecimal('monto');
+            $table->date('fecha');
+            $table->foreignId('visitante_id')->constrained();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateCursoUsuarioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('curso_usuario');
+        Schema::dropIfExists('pagos');
     }
 }

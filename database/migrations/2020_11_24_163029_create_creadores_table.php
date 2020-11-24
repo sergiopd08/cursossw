@@ -16,8 +16,8 @@ class CreateCreadoresTable extends Migration
         Schema::create('creadores', function (Blueprint $table) {
             $table->id();
             $table->text('descripcion')->nullable();
-            //$table->foreignId('visitante_id')->constrained()->onDelete('cascade');
-            //$table->foreignId('institucion_id')->references('id')->on('instituciones');
+            $table->foreignId('visitante_id')->constrained()->onDelete('cascade');
+            $table->foreignId('institucion_id')->references('id')->on('instituciones');
         });
     }
 
