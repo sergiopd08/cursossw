@@ -21,14 +21,18 @@ class Curso extends Model
     ];
 
     // protected $table = "cursos";
+    public $timestamps = false;
 
-    /*
+
     public function creadores() {
-        return $this->belongsTo(Creador::class);
+        return $this->belongsToMany(Creador::class);
     }
 
-    public function usuarios() {
-        return $this->belongsTo(Usuario::class);
+    public function visitantes() {
+        return $this->belongsToMany(Visitante::class);
     }
-    */
+
+    public function pagos() {
+        return $this->hasMany(Pago::class);
+    }
 }

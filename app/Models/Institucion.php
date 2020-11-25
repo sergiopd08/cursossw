@@ -11,5 +11,8 @@ class Institucion extends Model
 
     protected $table = "instituciones";
     public $timestamps = false;
-    
+
+    public function creador() {
+        return $this->belongsTo(Creador::class);
+    }
 }

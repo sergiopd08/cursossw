@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Visitante extends Model
 {
     use HasFactory;
+
+    public function cursos() {
+        return $this->belongsToMany(Cursos::class);
+    }
 }

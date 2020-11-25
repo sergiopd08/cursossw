@@ -23,7 +23,6 @@ class CreateCursosTable extends Migration
             $table->string('idioma',50);
             $table->text('aprendizajes')->nullable();
             $table->text('requisitos')->nullable();
-            $table->timestamps();
         });
     }
 
