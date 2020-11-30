@@ -1,6 +1,5 @@
 @extends('layouts.layout')
-@section('title', 'Ajustes de usuario')
-
+@section('title', 'Modificar usuario')
 @section('content')
 
 <div class="container-fluid">
@@ -76,7 +75,7 @@
                             <form>
                                 <div class="form-group">
                                     <label for="nombre-input">Nombre:</label>
-                                    <input type="text" class="form-control" id="id-input" readonly>
+                                    <input type="text" class="form-control" id="id-input">
                                 </div>
                             </form>
                         </div>
@@ -85,7 +84,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="correo-input">Email:</label>
-                                <input type="text" class="form-control" id="correo-input" readonly>
+                                <input type="text" class="form-control" id="correo-input">
                             </div>
                         </div>
                     </div>
@@ -93,7 +92,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="date-input">Fecha de creación:</label>
-                                <input type="date" class="form-control" id="date-input" readonly>
+                                <input type="date" class="form-control" id="date-input">
                             </div>
                         </div>
                     </div>
@@ -101,7 +100,14 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="edad-input">Edad:</label>
-                                <input type="number" class="form-control" id="edad-input" readonly>
+                                <input type="number" class="form-control" id="edad-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-warning" data-toggle="popover">Guardar cambios</button>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,5 @@
 @extends('layouts.layout')
-@section('title', 'Ajustes de usuario')
-
+@section('title','Eliminar cuenta')
 @section('content')
 
 <div class="container-fluid">
@@ -105,11 +104,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-danger" data-toggle="popover">Eliminar cuenta</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 @endsection

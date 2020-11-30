@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CreadorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
@@ -15,7 +16,7 @@ use App\Http\Controllers\CursoController;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('home');
 });
 
@@ -28,7 +29,8 @@ Route::get('cursos/create',[CursoController::class, 'create']);
 Route::get('cursos/show',[CursoController::class, 'show']);
 
 Route::get('cursos/edit', [CursoController::class, 'edit']);
-*/
+
+Route::get('creador/create',[CreadorController::class, 'create']);
 
 Route::get('/', HomeController::class);
 

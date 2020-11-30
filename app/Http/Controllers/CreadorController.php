@@ -24,7 +24,7 @@ class CreadorController extends Controller
      */
     public function create()
     {
-        //
+        return view('creador.creadorCreate');
     }
 
     /**
