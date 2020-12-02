@@ -12,56 +12,71 @@
     </div>
     <div class="row">
         <div class="col">
-            <div class="card">
-                <h6 class="card-header text-center">Ajustes</h6>
-                <div class="container">
-                    <div class="row mt-2">
-                        <div class="col-1">
-                            <form>
-                                <label for="idCurso">ID</label>
-                                <input type="number" class="form-control" id="idCurso" readonly>
 
-                            </form>
-                        </div>
-                        <div class="col-8">
-                            <label for="nombreCurso">Nombre del curso:</label>
-                            <input type="text" class="form-control" id="nombreCurso">
-                        </div>
-                        <div class="col-3">
-                            <label for="costoCurso">Costo:</label>
-                            <input type="number" class="form-control" id="costoCurso" step="1">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label for="descripcionCurso">Descripción:</label>
-                            <textarea class="form-control" rows="4" cols="50" id="descripcionCurso"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label for="idiomaCurso">Idioma:</label>
-                            <input type="text" class="form-control" id="idiomaCurso">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label for="aprendizajeCurso">Aprendizaje:</label>
-                            <textarea class="form-control" rows="4" cols="50" id="aprendizajeCurso"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label for="requisitosCurso">Requisitos:</label>
-                            <textarea class="form-control" rows="4" cols="50" id="requisitosCurso"></textarea>
-                        </div>
-                    </div>
-                    <div class="row text-center">
-                        <div class="col mt-2 mb-3">
-                            <button type="button" class="btn btn-info">Guardar</button>
-                        </div>
-                    </div>
+            @if ( $errors->any() )
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
                 </div>
+            @endif
+
+            <form action="{{ route('curso.update', [$curso]) }}" method="POST">
+                @csrf
+                @method('PATCH')
+
+                <div class="card">
+                    <h6 class="card-header text-center">{{ $curso->nombre }}</h6>
+                    <div class="container">
+                        <div class="row mt-2">
+                            <div class="col-1">
+                                <label for="idCurso">ID</label>
+                                <input value="{{ $curso->id }}" type="number" class="form-control" id="idCurso" readonly>
+                            </div>
+                            <div class="col-8">
+                                <label for="nombre">Nombre del curso:</label>
+                                <input for="nombre" name="nombre" value="{{old('nombre') ?? $curso->nombre ?? ''}}"  type="text" class="form-control" id="nombreCurso">
+                            </div>
+                            <div class="col-3">
+                                <label for="costo">Costo:</label>
+                                <input for="costo" name="costo" value="{{old('costo') ?? $curso->costo ?? ''}}" type="number" class="form-control" id="costoCurso" step="1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="descripcion">Descripción:</label>
+                                <textarea for="descripcion" name="descripcion" class="form-control" rows="4" cols="50" id="descripcionCurso"> {{old('descripcion') ?? $curso->descripcion ?? ''}} </textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="idioma">Idioma:</label>
+                                <input for="idioma" name="idioma" value="{{old('idioma') ?? $curso->idioma ?? ''}}" type="text" class="form-control" id="idiomaCurso">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="aprendizajes">Aprendizaje:</label>
+                                <textarea for="aprendizajes" name="aprendizajes" class="form-control" rows="4" cols="50" id="aprendizajeCurso"> {{old('aprendizajes') ?? $curso->aprendizajes ?? ''}} </textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="requisitos">Requisitos:</label>
+                                <textarea for="requisitos" name="requisitos" class="form-control" rows="4" cols="50" id="requisitosCurso"> {{old('requisitos') ?? $curso->requisitos ?? ''}} </textarea>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col mt-2 mb-3">
+                                <button type="submit" class="btn btn-info">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+
+            </form>
+
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@ class CursoController extends Controller
     {
         $cursos = Curso::get();
 
-        return "FALTA INDEX DE USUARIOS";
+        return view('home', compact('cursos'));
     }
 
     /**
@@ -41,12 +41,12 @@ class CursoController extends Controller
 
         $request->validate([
             'nombre' => 'required | string | min:5',
-            'fechaPublicacion' => 'required | date',
             'costo' => 'required | numeric',
             'descripcion' => 'string | nullable',
             'idioma' => 'required | string | min:4',
             'aprendizajes' => 'string | nullable',
-            'requisitos' => 'string | nullable'
+            'requisitos' => 'string | nullable',
+            'categoria' => 'string'
         ]);
 
         Curso::create( $request->all() );
@@ -87,12 +87,12 @@ class CursoController extends Controller
     {
         $request->validate([
             'nombre' => 'required | string | min:5',
-            'fechaPublicacion' => 'required | date',
             'costo' => 'required | numeric',
             'descripcion' => 'string | nullable',
             'idioma' => 'required | string | min:4',
             'aprendizajes' => 'string | nullable',
-            'requisitos' => 'string | nullable'
+            'requisitos' => 'string | nullable',
+            'categoria' => 'string'
         ]);
 
         Curso::where('id', $curso->id)->update($request->except('_method', '_token'));
@@ -111,5 +111,10 @@ class CursoController extends Controller
         $curso->delete();
 
         return redirect()->route('curso.index');
+    }
+
+    public function modify(Curso $curso)
+    {
+        return view('Curso.cursoModify', compact('curso'));
     }
 }

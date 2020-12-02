@@ -16,25 +16,11 @@ use App\Http\Controllers\CursoController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
 Route::get('/', HomeController::class);
 
-Route::get('cursos',[CursoController::class, 'index']);
-
-Route::get('cursos/create',[CursoController::class, 'create']);
-
-Route::get('cursos/show',[CursoController::class, 'show']);
-
-Route::get('cursos/edit', [CursoController::class, 'edit']);
-
-Route::get('creador/create',[CreadorController::class, 'create']);
-
-Route::get('/', HomeController::class);
-
-Route::resource('cursos', CursoController::class);
+//Route::get('posts/{post}/comments/{comment}', function ($postId, $commentId)
+Route::resource('curso', CursoController::class);
+Route::get('curso/{curso}/modify', [CursoController::class, 'modify'])->name('curso.modify');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

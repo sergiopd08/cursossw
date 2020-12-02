@@ -17,12 +17,12 @@ class CreateCursosTable extends Migration
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->date('fechaPublicacion');
             $table->unsignedFloat('costo')->default('0');
             $table->text('descripcion')->nullable();
             $table->string('idioma',50);
             $table->text('aprendizajes')->nullable();
             $table->text('requisitos')->nullable();
+            $table->text('categoria')->nullable();
         });
     }
 
