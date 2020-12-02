@@ -68,6 +68,18 @@
                                 <textarea for="requisitos" name="requisitos" class="form-control" rows="4" cols="50" id="requisitosCurso"> {{old('requisitos') ?? $curso->requisitos ?? ''}} </textarea>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="categoria">Categoría</label>
+                                <select class="custom-select" name="categoria" id="categoria">
+                                    <option selected>Seleccione una opcion</option>
+                                    <option>Ciencia y técnología</option>
+                                    <option>Arte</option>
+                                    <option>Humanidades</option>
+                                    <option>Negocios</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="row text-center">
                             <div class="col mt-2 mb-3">
                                 <button type="submit" class="btn btn-info">Guardar</button>

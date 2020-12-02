@@ -48,7 +48,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <label for="aprendizaje">Aprendizaje:</label>
-                                <textarea class="form-control" rows="4" cols="50" id="aprendizajeCurso" readonly></textarea>
+                                <textarea class="form-control" rows="4" cols="50" id="aprendizajeCurso" readonly>{{$curso->aprendizajes}}</textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -57,11 +57,19 @@
                                 <textarea for="requisitos" name="requisitos" class="form-control" rows="4" cols="50" id="requisitosCurso" readonly> {{ $curso->requisitos }} </textarea>
                             </div>
                         </div>
-                        <div class="row text-center">
-                            <div class="col mt-2 mb-3">
+                        <div class="row">
+                            <div class="col">
+                                <label for="categoria">Categoría</label>
+                                <input for="categoria" type="text" id="categoria" name="categoria" class="form-control" value="{{ $curso->categoria }}" readonly>
+                            </div>
+                        </div>
+                        <div class="row text-center mt-3 mb-1">
 
+                            <div class="col">
                                 <button type="button" class="btn btn-warning"> <a href="{{ route('curso.modify', [$curso]) }}"> Modificar </a> </button>
+                            </div>
 
+                            <div class="col">
                                 <form action="{{ route('curso.destroy', [$curso]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')

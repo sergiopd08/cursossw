@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('title','Crear curso')
 
-<link rel="stylesheet" href="{{asset('css/cursoCreate.css')}}">
+<link rel="stylesheet" href="{{asset('css/curso/cursoCreate.css')}}">
 
 @section('content')
 
@@ -10,13 +10,13 @@
     <div id="carousel" class="carousel slide carousel" data-ride="carousel" data-pause="false">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="resources/curso1.png" class="d-block w-100" alt="Maestro">
+                <img src="{{asset('images/curso1.png')}}" class="d-block w-100" alt="Maestro">
             </div>
             <div class="carousel-item">
-                <img src="resources/curso2.png" class="d-block w-100" alt="Programador">
+                <img src="{{asset('images/curso2.png')}}" class="d-block w-100" alt="Programador">
             </div>
             <div class="carousel-item">
-                <img src="resources/curso3.png" class="d-block w-100" alt="Contador">
+                <img src="{{asset('images/curso3.png')}}" class="d-block w-100" alt="Contador">
             </div>
             <div class="overlay">
                 <div class="container">
@@ -95,6 +95,18 @@
                             <div class="col-12">
                                 <label for="requisitos">Requisitos:</label>
                                 <textarea for="requisitos" name="requisitos" class="form-control" rows="4" cols="50" id="requisitosCurso"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="categoriaCurso">Categoría</label>
+                                <select for="categoria" class="custom-select" name="categoria" id="categoriaCurso">
+                                    <option selected>Seleccione una opcion</option>
+                                    <option value="Ciencia y técnología">Ciencia y técnología</option>
+                                    <option value="Arte">Arte</option>
+                                    <option value="Humanidades">Humanidades</option>
+                                    <option value="Negiocios">Negocios</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row text-center">

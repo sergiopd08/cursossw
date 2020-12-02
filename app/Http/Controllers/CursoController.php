@@ -38,6 +38,7 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
+        //return $request;
 
         $request->validate([
             'nombre' => 'required | string | min:5',

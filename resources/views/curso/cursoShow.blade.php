@@ -20,7 +20,7 @@
               <div class="col-sm-12 col-lg-6 col-md-6 text-center">
                   <div class="card m-auto" style="width: 18rem;">
                       <div class="card-header">
-                          {{ $curso->costo }}
+                          ${{ $curso->costo }}
                       </div>
                       <div class="card-body">
                           <a href="#" class="btn btn-primary mb-2">Incribirse ahora</a>
