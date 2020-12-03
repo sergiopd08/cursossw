@@ -35,7 +35,7 @@
                     <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><!--Modificación pendiente-->
+                    <a class="nav-link" href="#"> {{ Auth::user()->name }} <!--Modificación pendiente-->
                         <img src="{{asset('images/egg.png')}}" height="30px" alt="Icono Usuario">
                     </a>
                 </li>

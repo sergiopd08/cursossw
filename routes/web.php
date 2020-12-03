@@ -17,7 +17,7 @@ use App\Http\Controllers\InstitucionController;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::middleware(['auth:sanctum', 'verified'])->get('/', HomeController::class);
 
 //Route::get('posts/{post}/comments/{comment}', function ($postId, $commentId)
 Route::resource('curso', CursoController::class);
@@ -26,7 +26,8 @@ Route::get('curso/{curso}/modify', [CursoController::class, 'modify'])->name('cu
 
 Route::resource('institucion', InstitucionController::class);
 
+/*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
+*/
