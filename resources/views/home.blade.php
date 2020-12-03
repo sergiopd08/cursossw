@@ -35,6 +35,12 @@
     </main>
     <!--/Main-Carousel-->
 
+    @if ( session()->has('message') )
+        <div class="alert alert-success text-center">
+            {{ session()->get('message') }}
+        </div>
+    @endif
+
     <!---->
     <div class="container mt-4 mb-4">
         <div class="row text-center">

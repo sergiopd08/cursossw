@@ -63,26 +63,58 @@
                         <div class="row mt-2">
                             <div class="col-8">
                                 <label for="nombre">* Nombre del curso:</label>
-                                <input for="nombre" name="nombre" type="text" class="form-control" id="nombreCurso">
+                                <input value="{{ old('nombre') ?? $curso->nombre ?? '' }}" for="nombre" name="nombre" type="text" class="form-control" id="nombreCurso">
                             </div>
                             <div class="col-1">
                                 <!--Espacio-->
                             </div>
                             <div class="col-3">
                                 <label for="costo">* Costo:</label>
-                                <input for="costo" name="costo" type="number" class="form-control" id="costoCurso" step="1">
+                                <input value="{{old('costo') ?? $curso->costo ?? ''}}" for="costo" name="costo" type="number" class="form-control" id="costoCurso" step="1">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <label for="descripcion">Descripción:</label>
-                                <textarea for="descripcion" name="descripcion" class="form-control" rows="4" cols="50" id="descripcionCurso"></textarea>
+                                <textarea for="descripcion" name="descripcion" class="form-control" rows="4" cols="50" id="descripcionCurso"> {{old('descripcion') ?? $curso->descripcion ?? ''}} </textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <label for="idioma">* Idioma:</label>
-                                <input for="idioma" name="idioma" type="text" class="form-control" id="idiomaCurso">
+                                <input value="{{old('idioma') ?? $curso->idioma ?? ''}}" for="idioma" name="idioma" type="text" class="form-control" id="idiomaCurso">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="categoria">Categoría</label>
+                                <select class="custom-select" for="categoria" name="categoria" id="categoria">
+
+                                    @if ( empty(old('categoria')) )
+                                        <option value="">--Seleccione una opción--</option>
+                                        <option value="Ciencia y tecnologia">Ciencia y técnología</option>
+                                        <option value="Arte">Arte</option>
+                                        <option value="Humanidades">Humanidades</option>
+                                        <option value="Negocios">Negocios</option>
+                                    @else
+
+                                        <option value="{{ old('categoria') }}"> {{ old('categoria') }} </option>
+
+                                        @if ( old('categoria') != "Ciencia y tecnologia")
+                                            <option value="Ciencia y tecnologia">Ciencia y técnología</option>
+                                        @endif
+                                        @if ( old('categoria') != "Arte")
+                                            <option value="Arte">Arte</option>
+                                        @endif
+                                        @if ( old('categoria') != "Humanidades")
+                                            <option value="Humanidades">Humanidades</option>
+                                        @endif
+                                        @if ( old('categoria') != "Negocios")
+                                            <option value="Negocios">Negocios</option>
+                                        @endif
+
+                                    @endif
+                                </select>
                             </div>
                         </div>
                         <div class="row">
@@ -95,18 +127,6 @@
                             <div class="col-12">
                                 <label for="requisitos">Requisitos:</label>
                                 <textarea for="requisitos" name="requisitos" class="form-control" rows="4" cols="50" id="requisitosCurso"></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="categoriaCurso">Categoría</label>
-                                <select for="categoria" class="custom-select" name="categoria" id="categoriaCurso">
-                                    <option selected>Seleccione una opcion</option>
-                                    <option value="Ciencia y técnología">Ciencia y técnología</option>
-                                    <option value="Arte">Arte</option>
-                                    <option value="Humanidades">Humanidades</option>
-                                    <option value="Negiocios">Negocios</option>
-                                </select>
                             </div>
                         </div>
                         <div class="row text-center">

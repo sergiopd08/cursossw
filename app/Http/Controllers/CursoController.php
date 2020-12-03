@@ -37,8 +37,8 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
         //return $request;
+        //dd($request->categoria);
 
         $request->validate([
             'nombre' => 'required | string | min:5',
@@ -47,12 +47,12 @@ class CursoController extends Controller
             'idioma' => 'required | string | min:4',
             'aprendizajes' => 'string | nullable',
             'requisitos' => 'string | nullable',
-            'categoria' => 'string'
+            'categoria' => 'string | required'
         ]);
 
         Curso::create( $request->all() );
 
-        return redirect()->route('curso.index');
+        return redirect()->route('curso.index')->with('message', 'Curso creado con éxito');
     }
 
     /**
@@ -93,12 +93,12 @@ class CursoController extends Controller
             'idioma' => 'required | string | min:4',
             'aprendizajes' => 'string | nullable',
             'requisitos' => 'string | nullable',
-            'categoria' => 'string'
+            'categoria' => 'string | required'
         ]);
 
         Curso::where('id', $curso->id)->update($request->except('_method', '_token'));
 
-        return redirect()->route('curso.show', [$curso]);
+        return redirect()->route('curso.show', [$curso])->with('message', 'Curso modificado con éxito');
     }
 
     /**
@@ -111,7 +111,7 @@ class CursoController extends Controller
     {
         $curso->delete();
 
-        return redirect()->route('curso.index');
+        return redirect()->route('curso.index')->with('message', 'El curso ha sido ELIMINADO');
     }
 
     public function modify(Curso $curso)

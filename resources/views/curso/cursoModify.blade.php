@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-8">
                                 <label for="nombre">Nombre del curso:</label>
-                                <input for="nombre" name="nombre" value="{{old('nombre') ?? $curso->nombre ?? ''}}"  type="text" class="form-control" id="nombreCurso">
+                                <input for="nombre" name="nombre" value="{{ old('nombre') ?? $curso->nombre ?? ''}}"  type="text" class="form-control" id="nombreCurso">
                             </div>
                             <div class="col-3">
                                 <label for="costo">Costo:</label>
@@ -71,13 +71,46 @@
                         <div class="row">
                             <div class="col">
                                 <label for="categoria">Categoría</label>
-                                <select class="custom-select" name="categoria" id="categoria">
-                                    <option selected>Seleccione una opcion</option>
-                                    <option>Ciencia y técnología</option>
-                                    <option>Arte</option>
-                                    <option>Humanidades</option>
-                                    <option>Negocios</option>
+
+                                <select class="custom-select" for="categoria" name="categoria" id="categoria">
+
+                                    @if ( empty(old('categoria')) )
+
+                                        <option value="{{ $curso->categoria }}"> {{ $curso->categoria }} </option>
+
+                                        @if ( $curso->categoria != "Ciencia y tecnologia")
+                                            <option value="Ciencia y tecnologia">Ciencia y técnología</option>
+                                        @endif
+                                        @if ( $curso->categoria != "Arte")
+                                            <option value="Arte">Arte</option>
+                                        @endif
+                                        @if ( $curso->categoria != "Humanidades")
+                                            <option value="Humanidades">Humanidades</option>
+                                        @endif
+                                        @if ( $curso->categoria != "Negocios")
+                                            <option value="Negocios">Negocios</option>
+                                        @endif
+
+                                    @else
+
+                                        <option value="{{ old('categoria') }}"> {{ old('categoria') }} </option>
+
+                                        @if ( old('categoria') != "Ciencia y tecnologia")
+                                            <option value="Ciencia y tecnologia">Ciencia y técnología</option>
+                                        @endif
+                                        @if ( old('categoria') != "Arte")
+                                            <option value="Arte">Arte</option>
+                                        @endif
+                                        @if ( old('categoria') != "Humanidades")
+                                            <option value="Humanidades">Humanidades</option>
+                                        @endif
+                                        @if ( old('categoria') != "Negocios")
+                                            <option value="Negocios">Negocios</option>
+                                        @endif
+
+                                    @endif
                                 </select>
+
                             </div>
                         </div>
                         <div class="row text-center">

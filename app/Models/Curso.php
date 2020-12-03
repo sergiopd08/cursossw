@@ -17,7 +17,8 @@ class Curso extends Model
         'descripcion',
         'idioma',
         'aprendizajes',
-        'requisitos'
+        'requisitos',
+        'categoria'
     ];
 
     // protected $table = "cursos";

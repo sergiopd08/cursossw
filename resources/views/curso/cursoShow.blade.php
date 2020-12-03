@@ -4,6 +4,12 @@
 
 @section('content')
 
+@if ( session()->has('message') )
+    <div class="alert alert-success text-center">
+        {{ session()->get('message') }}
+    </div>
+@endif
+
 <!--Jumbotron-->
 <div class="container-jumbotron">
   <div class="cover jumbotron jumbotron-fluid mt-2" id="cover">

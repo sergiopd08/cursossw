@@ -14,7 +14,14 @@ class InstitucionController extends Controller
      */
     public function index()
     {
-        //
+        $institucion = Institucion::get();
+
+        foreach ($institucion as $ins) {
+            echo $ins->nombre;
+            echo $ins->direccion;
+        }
+
+        return "AGREGADA CON ÉXITO";
     }
 
     /**
@@ -24,7 +31,7 @@ class InstitucionController extends Controller
      */
     public function create()
     {
-        //
+        return view('institucion.institucionCreate');
     }
 
     /**
@@ -35,7 +42,16 @@ class InstitucionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $request->validate([
+            'nombre' => 'required | string | min:5',
+            'direccion' => 'required | string | min:5'
+        ]);
+
+        Institucion::create($request->all());
+
+        return redirect()->route('institucion.index');
     }
 
     /**

@@ -18,11 +18,11 @@ class CreateCursosTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->unsignedFloat('costo')->default('0');
+            $table->string('idioma', 50);
             $table->text('descripcion')->nullable();
-            $table->string('idioma',50);
             $table->text('aprendizajes')->nullable();
             $table->text('requisitos')->nullable();
-            $table->text('categoria')->nullable();
+            $table->string('categoria');
         });
     }
 
