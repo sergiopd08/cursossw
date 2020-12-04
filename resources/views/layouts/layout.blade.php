@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                <a class="nav-link" href="#">Inicio</a>
+                <a class="nav-link" href="{{ route('home') }}">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Cursos</a>
@@ -31,9 +31,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Enseña</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
-                </li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <li class="nav-item">
+                        <button type="button submit">Cerrar sesión</button>
+                    </li>
+                </form>
                 <li class="nav-item">
                     <a class="nav-link" href="#"> {{ Auth::user()->name }} <!--Modificación pendiente-->
                         <img src="{{asset('images/egg.png')}}" height="30px" alt="Icono Usuario">

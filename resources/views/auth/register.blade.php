@@ -29,6 +29,21 @@
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
+            <div>
+                <x-jet-label for="edad" value="{{ __('Edad') }}" />
+                <x-jet-input id="edad" class="block mt-1 w-full" type="number" name="edad" :value="old('edad')" required autofocus autocomplete="edad" />
+            </div>
+
+            <div>
+                <x-jet-label for="nombre" value="{{ __('Nombre') }}" />
+                <x-jet-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus autocomplete="nombre" />
+            </div>
+
+            <div>
+                <x-jet-label for="direccion" value="{{ __('Direccion') }}" />
+                <x-jet-input id="direccion" class="block mt-1 w-full" type="text" name="direccion" :value="old('direccion')" required autofocus autocomplete="direccion" />
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
