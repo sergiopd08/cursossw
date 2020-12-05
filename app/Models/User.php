@@ -28,8 +28,19 @@ class User extends Authenticatable
         'email',
         'password',
         'edad',
-        'ocupacion'
+        'ocupacion',
+        'institucion_id'
     ];
+
+    public function setOcupacionAttribute($value) // Mutator
+    {
+        return $this->attributes['ocupacion'] =  mb_strtoupper($value, 'UTF-8');
+    }
+
+    public function getNameAttribute($value) // Accessor
+    {
+        return ucfirst($value);
+    }
 
     /**
      * The attributes that should be hidden for arrays.
@@ -61,15 +72,19 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function creador() {
-        return $this->belongsTo(Creador::class);
+    public function institucion () { // Relación 1 a 1 con Instituciones
+        return $this->hasOne(Institucion::class);
     }
 
-    public function visitante() {
-        return $this->belongsTo(Visitante::class);
-    }
-
-    public function pagos() {
+    public function pagos () { // Relación 1 a N con Pagos
         return $this->hasMany(Pago::class);
+    }
+
+    public function cursos () { // Relacion n:m con Users para cursos en carrito
+        return $this->belongsToMany(Curso::class);
+    }
+
+    public function creaciones () { // Relacion n:m con Users para cursos creados
+        return $this->belongsToMany(Curso::class);
     }
 }

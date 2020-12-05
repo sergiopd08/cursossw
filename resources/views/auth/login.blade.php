@@ -12,6 +12,12 @@
             </div>
         @endif
 
+        @if ( session()->has('message') )
+            <div class="alert alert-success text-center">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 

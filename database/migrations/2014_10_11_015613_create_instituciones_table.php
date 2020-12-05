@@ -17,6 +17,7 @@ class CreateInstitucionesTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('direccion');
+            $table->timestamps();
         });
     }
 

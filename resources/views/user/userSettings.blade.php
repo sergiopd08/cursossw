@@ -118,6 +118,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="edad-input">Institucion Afiliada:</label>
+                                <input value="{{ $user->institucion_id }}" type="number" class="form-control" id="edad-input" readonly>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

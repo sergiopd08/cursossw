@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Institucion;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Fortify\Rules\Password;
 
 class UserController extends Controller
 {
@@ -39,7 +42,37 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'confirmed', 'min: 8'],
+            'edad' => ['required'],
+            'ocupacion' => ['required', 'string'],
+
+            'nombre' => ['required', 'string', 'unique:instituciones'],
+            'direccion' => ['required', 'string']
+        ]);
+
+        //User::create($request->all());
+
+        Institucion::create([
+            'nombre' => $request->nombre,
+            'direccion' => $request->direccion
+        ]);
+
+        // dd(Institucion::where('nombre', $request->nombre)->get('id'));
+        $institucion = Institucion::where('nombre', $request->nombre)->get()->toArray();
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'edad' => $request->edad,
+            'ocupacion' => $request->ocupacion,
+            'institucion_id' => $institucion[0]['id']
+        ]);
+
+        return redirect()->route('login')->with('message', 'Usuario registrado con éxito');
     }
 
     /**

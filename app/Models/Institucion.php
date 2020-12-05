@@ -15,10 +15,8 @@ class Institucion extends Model
         'direccion'
     ];
 
-    public $timestamps = false;
-
-    public function creador() {
-        return $this->belongsTo(Creador::class);
+    public function user() { // Relación 1 a 1 con Users
+        return $this->belongsTo(User::class);
     }
 
     public function setNombreAttribute($value) { // Mutator

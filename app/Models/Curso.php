@@ -22,18 +22,27 @@ class Curso extends Model
     ];
 
     // protected $table = "cursos";
-    public $timestamps = false;
-
-
-    public function creadores() {
-        return $this->belongsToMany(Creador::class);
+    public function setNombreAttribute($value) // Mutator
+    {
+        return $this->attributes['nombre'] =  mb_strtoupper($value, 'UTF-8');
     }
 
-    public function visitantes() {
-        return $this->belongsToMany(Visitante::class);
+    public function getIdiomaAttribute($value) // Accessor
+    {
+        return ucfirst($value);
     }
 
+    public function creaciones () { // Relacion n:m con Cursos para cursos creados
+        return $this->belongsToMany(User::class);
+    }
+
+    public function users () { // Relacion n:m con Cursos para cursos en carrito
+        return $this->belongsToMany(User::class);
+    }
+
+    /*
     public function pagos() {
         return $this->hasMany(Pago::class);
     }
+    */
 }

@@ -27,7 +27,7 @@ class CreateNewUser implements CreatesNewUsers
             'edad' => ['required'],
             'ocupacion' => ['required', 'string'],
 
-            'nombre'=>['required', 'string'],
+            'nombre'=>['required', 'string', 'unique:instituciones'],
             'direccion' =>['required', 'string']
         ])->validate();
 

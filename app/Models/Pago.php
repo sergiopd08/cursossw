@@ -9,11 +9,19 @@ class Pago extends Model
 {
     use HasFactory;
 
-    public function user() {
+    protected $fillable = [
+        'monto',
+        'fecha',
+        'user_id'
+    ];
+
+    public function user() { // Relación 1 a N con Users
         return $this->belongsTo(User::class);
     }
 
+    /*
     public function curso() {
         return $this->belongsTo(Curso::class);
     }
+    */
 }

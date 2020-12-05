@@ -23,6 +23,7 @@ class CreateCursosTable extends Migration
             $table->text('aprendizajes')->nullable();
             $table->text('requisitos')->nullable();
             $table->string('categoria');
+            $table->timestamps();
         });
     }
 

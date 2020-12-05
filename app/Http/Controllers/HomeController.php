@@ -14,7 +14,8 @@ class HomeController extends Controller
         return view('home', compact('cursos'));
     }
 
-    public function home(){
+    public function home()
+    {
         return redirect()->route('index');
     }
 }

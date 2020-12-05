@@ -17,12 +17,12 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('welcome', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return redirect()->route('dashboard');
 });
 
 // HOME
-Route::middleware(['auth:sanctum', 'verified'])->get('/', [HomeController::class, 'index'])->name('index');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::get('home', [HomeController::class, 'home'])->name('home');
 
