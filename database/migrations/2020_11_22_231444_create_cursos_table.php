@@ -24,6 +24,7 @@ class CreateCursosTable extends Migration
             $table->text('requisitos')->nullable();
             $table->string('categoria');
             $table->timestamps();
+            $table->softDeletes('deleted_at', 0);
         });
     }
 

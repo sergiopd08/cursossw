@@ -1,7 +1,8 @@
 <x-guest-layout>
     <x-jet-authentication-card>
+
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <img class="w-25 h-20" viewbox="0 0 48 48" fill="none" src="{{ asset('images/artistas.png') }}" />
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -46,7 +47,7 @@
 
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('¿Olvidaste tu contraseña?') }}
                     </a>
                 @endif
 
