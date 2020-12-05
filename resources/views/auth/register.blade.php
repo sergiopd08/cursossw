@@ -35,12 +35,21 @@
             </div>
 
             <div>
+                <x-jet-label for="ocupacion" value="{{ __('Ocupación') }}" />
+                <x-jet-input id="ocupacion" class="block mt-1 w-full" type="text" name="ocupacion" :value="old('ocupacion')" required autofocus autocomplete="nombre" />
+            </div>
+
+            <div>
+                <x-jet-input style="text-align: center; background-color: gray; color: white" id="nombre" class="block mt-1 w-full" type="text" name="nombre" value="AFILIACIÓN DE INSTITUCIÓN" required autofocus autocomplete="nombre" readonly/>
+            </div>
+
+            <div>
                 <x-jet-label for="nombre" value="{{ __('Nombre') }}" />
                 <x-jet-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus autocomplete="nombre" />
             </div>
 
             <div>
-                <x-jet-label for="direccion" value="{{ __('Direccion') }}" />
+                <x-jet-label for="direccion" value="{{ __('Dirección') }}" />
                 <x-jet-input id="direccion" class="block mt-1 w-full" type="text" name="direccion" :value="old('direccion')" required autofocus autocomplete="direccion" />
             </div>
 

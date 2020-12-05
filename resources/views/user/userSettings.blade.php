@@ -11,10 +11,10 @@
                     <img src="icon.png" style="width: 100px">
                 </div>
                 <div class="col-12 d-flex justify-content-center">
-                    <h6>Nombre</h6>
+                    <h6> {{$user->name}} </h6>
                 </div>
                 <div class="col-12 d-flex justify-content-center">
-                    <h6>ID: </h6>
+                    <h6>ID: {{$user->id}} </h6>
                     <h6> # </h6>
                 </div>
             </div>
@@ -42,14 +42,27 @@
 </div>
 
 <div class="container" id="user-info">
+
+    @if ( session()->has('message') )
+        <div class="alert alert-success text-center">
+            {{ session()->get('message') }}
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-lg-3 col-sm-12">
             <div class="card">
                 <h6 class="card-header">Ajustes de usuario</h6>
                 <nav class="nav nav-tabs flex-column">
-                    <a href="#" class="nav-link">Ver perfil</a>
-                    <a href="#" class="nav-link">Modificar perfil</a>
-                    <a href="#" class="nav-link">Eliminar cuenta</a>
+                    <a href="{{route('user.show', [$user])}}" class="nav-link">Ver perfil</a>
+                    <a href="{{route('user.edit', [$user])}}" class="nav-link">Modificar perfil</a>
+
+                    <form action="{{ route('user.destroy', [$user]) }}" method="POST" id="deleteUser">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+
+                    <button form="deleteUser"  style="text-align: left; color: blue" class="nav-link" > Eliminar cuenta</button>
                 </nav>
             </div>
         </div>
@@ -65,7 +78,7 @@
                             <form>
                                 <div class="form-group">
                                     <label for="id-input">ID:</label>
-                                    <input type="number" class="form-control" id="id-input" readonly>
+                                    <input value="{{ $user->id }}" type="number" class="form-control" id="id-input" readonly>
                                 </div>
                             </form>
                         </div>
@@ -76,7 +89,7 @@
                             <form>
                                 <div class="form-group">
                                     <label for="nombre-input">Nombre:</label>
-                                    <input type="text" class="form-control" id="id-input" readonly>
+                                    <input value="{{ $user->name }}" type="text" class="form-control" id="id-input" readonly>
                                 </div>
                             </form>
                         </div>
@@ -85,15 +98,15 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="correo-input">Email:</label>
-                                <input type="text" class="form-control" id="correo-input" readonly>
+                                <input value="{{ $user->email }}" type="text" class="form-control" id="correo-input" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="date-input">Fecha de creación:</label>
-                                <input type="date" class="form-control" id="date-input" readonly>
+                                <label for="date-input">Ocupación:</label>
+                                <input name="ocupacion" for="ocupacion" value="{{ old('ocupacion') ?? $user->ocupacion ?? '' }}" type="text" class="form-control" id="ocupacion-input" readonly>
                             </div>
                         </div>
                     </div>
@@ -101,7 +114,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="edad-input">Edad:</label>
-                                <input type="number" class="form-control" id="edad-input" readonly>
+                                <input value="{{ $user->edad }}" type="number" class="form-control" id="edad-input" readonly>
                             </div>
                         </div>
                     </div>

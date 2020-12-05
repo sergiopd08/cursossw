@@ -10,10 +10,10 @@
                     <img src="icon.png" style="width: 100px">
                 </div>
                 <div class="col-12 d-flex justify-content-center">
-                    <h6>Nombre</h6>
+                    <h6>{{ $user->name }}</h6>
                 </div>
                 <div class="col-12 d-flex justify-content-center">
-                    <h6>ID: </h6>
+                    <h6>ID: {{ $user->id }} </h6>
                     <h6> # </h6>
                 </div>
             </div>
@@ -41,14 +41,25 @@
 </div>
 
 <div class="container" id="user-info">
+
+    @if ( $errors->any() )
+        <div class="alert alert-danger text-center">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-lg-3 col-sm-12">
             <div class="card">
                 <h6 class="card-header">Ajustes de usuario</h6>
                 <nav class="nav nav-tabs flex-column">
-                    <a href="#" class="nav-link">Ver perfil</a>
-                    <a href="#" class="nav-link">Modificar perfil</a>
-                    <a href="#" class="nav-link">Eliminar cuenta</a>
+                    <a href="{{route('user.show', [$user])}}" class="nav-link">Ver perfil</a>
+                    <a href="{{route('user.edit', [$user])}}" class="nav-link">Modificar perfil</a>
+                    <a href="{{route('user.destroy', [$user])}}" class="nav-link">Eliminar cuenta</a>
                 </nav>
             </div>
         </div>
@@ -58,60 +69,63 @@
         <div class="col-lg-8">
             <div class="card">
                 <h6 class="card-header">Información de usuario</h6>
-                <div class="container">
-                    <div class="row mt-3">
-                        <div class="col-3">
-                            <form>
+                <form action="{{ route('user.update', [$user]) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+
+                    <div class="container">
+                        <div class="row mt-3">
+                            <div class="col-3">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="id-input">ID:</label>
+                                        <input value="{{ $user->id }}" type="number" class="form-control" id="id-input" readonly>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-2">
+                                <!--Espacio-->
+                            </div>
+                            <div class="col-7">
+                                    <div class="form-group">
+                                        <label for="nombre-input">Nombre:</label>
+                                        <input value="{{ old('name') ?? $user->name ?? '' }}" for="name" name="name" type="text" class="form-control" id="id-input">
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
                                 <div class="form-group">
-                                    <label for="id-input">ID:</label>
-                                    <input type="number" class="form-control" id="id-input" readonly>
+                                    <label for="correo-input">Email:</label>
+                                    <input name="email" for="email" value="{{ old('email') ?? $user->email ?? '' }}" type="text" class="form-control" id="correo-input">
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <!--Espacio-->
-                        </div>
-                        <div class="col-7">
-                            <form>
+                        <div class="row">
+                            <div class="col-12">
                                 <div class="form-group">
-                                    <label for="nombre-input">Nombre:</label>
-                                    <input type="text" class="form-control" id="id-input">
+                                    <label for="date-input">Ocupación:</label>
+                                    <input name="ocupacion" for="ocupacion" value="{{ old('ocupacion') ?? $user->ocupacion ?? '' }}" type="text" class="form-control" id="ocupacion-input">
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="correo-input">Email:</label>
-                                <input type="text" class="form-control" id="correo-input">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="edad-input">Edad:</label>
+                                    <input name="edad" for="edad" value="{{ old('edad') ?? $user->edad ?? '' }}" type="number" class="form-control" id="edad-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-warning" data-toggle="popover">Guardar cambios</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="date-input">Fecha de creación:</label>
-                                <input type="date" class="form-control" id="date-input">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="edad-input">Edad:</label>
-                                <input type="number" class="form-control" id="edad-input">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <button type="button" class="btn btn-warning" data-toggle="popover">Guardar cambios</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

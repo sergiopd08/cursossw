@@ -25,6 +25,8 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'edad' => ['required'],
+            'ocupacion' => ['required', 'string'],
+
             'nombre'=>['required', 'string'],
             'direccion' =>['required', 'string']
         ])->validate();
@@ -34,6 +36,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             'edad' => $input['edad'],
+            'ocupacion' => $input['ocupacion'],
 
             Institucion::create([
                 'nombre' => $input['nombre'],

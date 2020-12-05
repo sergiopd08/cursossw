@@ -31,14 +31,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Enseña</a>
                 </li>
+
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
+
                     <li class="nav-item">
-                        <button type="button submit">Cerrar sesión</button>
+                        <a class="nav-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                        {{ __('Cerrar sesión') }}
+                        </a>
                     </li>
                 </form>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> {{ Auth::user()->name }} <!--Modificación pendiente-->
+                    <a class="nav-link" href="{{ route('user.show', [Auth::user()]) }}"> {{ Auth::user()->name }} <!--Modificación pendiente-->
                         <img src="{{asset('images/egg.png')}}" height="30px" alt="Icono Usuario">
                     </a>
                 </li>
