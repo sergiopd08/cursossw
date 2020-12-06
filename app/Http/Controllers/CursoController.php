@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Gate;
+
 class CursoController extends Controller
 {
     /**
@@ -116,6 +118,8 @@ class CursoController extends Controller
 
     public function modify(Curso $curso)
     {
+        Gate::authorize('admin'); // Gate para sólo admin
+
         return view('Curso.cursoModify', compact('curso'));
     }
 }

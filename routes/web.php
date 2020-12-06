@@ -17,23 +17,26 @@ use App\Http\Controllers\UserController;
 |
 */
 
+// HOME
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',
+    [HomeController::class, 'index'])->name('dashboard'); // Middleware auth
+
 Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-// HOME
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-
-Route::get('home', [HomeController::class, 'home'])->name('home');
-
 // USUARIO
-Route::resource('user', UserController::class);
+Route::resource('user', UserController::class); // Middleware en Controller
 
-//  CURSO
-Route::resource('curso', CursoController::class);
+Route::middleware('auth')->group( function () { // MIddleware group
 
-Route::get('curso/{curso}/modify', [CursoController::class, 'modify'])->name('curso.modify');
+    Route::get('home', [HomeController::class, 'home'])->name('home');
+    
+    //  CURSO
+    Route::resource('curso', CursoController::class);
 
+    Route::get('curso/{curso}/modify', [CursoController::class, 'modify'])->name('curso.modify');
+});
 /*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

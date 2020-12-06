@@ -59,7 +59,13 @@
                 <nav class="nav nav-tabs flex-column">
                     <a href="{{route('user.show', [$user])}}" class="nav-link">Ver perfil</a>
                     <a href="{{route('user.edit', [$user])}}" class="nav-link">Modificar perfil</a>
-                    <a href="{{route('user.destroy', [$user])}}" class="nav-link">Eliminar cuenta</a>
+
+                    <form action="{{ route('user.destroy', [$user]) }}" method="POST" id="deleteUser">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+
+                    <button form="deleteUser"  style="text-align: left; color: blue" class="nav-link" > Eliminar cuenta</button>
                 </nav>
             </div>
         </div>
