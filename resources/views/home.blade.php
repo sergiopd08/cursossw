@@ -60,6 +60,7 @@
             </div>
             @endforeach
         </div>
+        <a href="{{route('cursos.pdf')}}">Descargar PDF</a>
     </div>
     <!---->
 

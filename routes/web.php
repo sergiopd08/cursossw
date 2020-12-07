@@ -5,6 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\UserController;
+/*use App\Mail\CorreoCursos;
+use Illuminate\Support\Facades\Mail;*/
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +40,9 @@ Route::middleware('auth')->group( function () { // MIddleware group
 
     Route::get('curso/{curso}/modify', [CursoController::class, 'modify'])->name('curso.modify');
 });
+
+Route::get('cursos-list-pdf',[CursoController::class, 'exportPdf'])->name('cursos.pdf');
+
 /*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

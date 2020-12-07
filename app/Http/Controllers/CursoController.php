@@ -6,6 +6,7 @@ use App\Models\Curso;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Gate;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class CursoController extends Controller
 {
@@ -121,5 +122,12 @@ class CursoController extends Controller
         Gate::authorize('admin'); // Gate para sólo admin
 
         return view('Curso.cursoModify', compact('curso'));
+    }
+
+    public function exportPdf()
+    {
+        $cursos = Curso::get();
+        $pdf = PDF::loadView('pdf.pdfCursos', compact('cursos'));
+        return $pdf->download('cursos.pdf');
     }
 }
