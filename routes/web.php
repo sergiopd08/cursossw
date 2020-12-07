@@ -34,14 +34,14 @@ Route::resource('user', UserController::class); // Middleware en Controller
 Route::middleware('auth')->group( function () { // MIddleware group
 
     Route::get('home', [HomeController::class, 'home'])->name('home');
-    
+
     //  CURSO
     Route::resource('curso', CursoController::class);
 
     Route::get('curso/{curso}/modify', [CursoController::class, 'modify'])->name('curso.modify');
-});
 
-Route::get('cursos-list-pdf',[CursoController::class, 'exportPdf'])->name('cursos.pdf');
+    Route::get('cursos-list-pdf', [CursoController::class, 'exportPdf'])->name('cursos.pdf');
+});
 
 /*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
