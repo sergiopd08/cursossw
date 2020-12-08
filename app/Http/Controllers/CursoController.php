@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Creador;
+
+use Illuminate\Support\Facades\Gate;
 
 class CursoController extends Controller
 {
@@ -50,10 +54,18 @@ class CursoController extends Controller
             'idioma' => 'required | string | min:4',
             'aprendizajes' => 'string | nullable',
             'requisitos' => 'string | nullable',
-            'categoria' => 'string | required'
+            'categoria' => 'required'
         ]);
 
-        Curso::create( $request->all() );
+        $curso = Curso::create( $request->all() );
+
+        //$curso->users()->attach( Auth::user()->id );
+
+        Creador::create([
+            'user_id' => Auth::user()->id
+        ]);
+
+        $curso->creadores()->attach(Auth::user()->id);
 
         return redirect()->route('curso.index')->with('message', 'Curso creado con éxito');
     }
@@ -66,7 +78,20 @@ class CursoController extends Controller
      */
     public function show(Curso $curso)
     {
-        return view('Curso.cursoShow', compact('curso'));
+        $bool_inscrito = false;
+        $bool_creado = false;
+
+        if ( sizeof( DB::select('select curso_id from curso_user where curso_id = ? and user_id = ?', [$curso->id, Auth::user()->id]) ) == 0 )
+        {
+            $bool_inscrito = true;
+        }
+
+        if ( sizeof(DB::select('select curso_id from creador_curso where curso_id = ? and creador_id = ?', [$curso->id, Auth::user()->id]) ) == 0 )
+        {
+            $bool_creado = true;
+        }
+
+        return view('Curso.cursoShow', compact('curso', 'bool_inscrito', 'bool_creado'));
     }
 
     /**
@@ -77,6 +102,8 @@ class CursoController extends Controller
      */
     public function edit(Curso $curso)
     {
+        $this->authorize('update', [Curso::class, $curso]);
+
         return view('Curso.cursoSettings', compact('curso'));
     }
 
@@ -96,7 +123,7 @@ class CursoController extends Controller
             'idioma' => 'required | string | min:4',
             'aprendizajes' => 'string | nullable',
             'requisitos' => 'string | nullable',
-            'categoria' => 'string | required'
+            'categoria' => 'required'
         ]);
 
         Curso::where('id', $curso->id)->update($request->except('_method', '_token'));
@@ -119,8 +146,7 @@ class CursoController extends Controller
 
     public function modify(Curso $curso)
     {
-        Gate::authorize('admin'); // Gate para sólo admin
-
+        $this->authorize('update', [Curso::class, $curso]);
         return view('Curso.cursoModify', compact('curso'));
     }
 
@@ -129,5 +155,19 @@ class CursoController extends Controller
         $cursos = Curso::get();
         $pdf = PDF::loadView('pdf.pdfCursos', compact('cursos'));
         return $pdf->download('cursos.pdf');
+    }
+
+    public function cancelarSuscripcion (Curso $curso)
+    {
+        DB::delete('delete from curso_user where curso_id = ? and user_id = ?', [$curso->id, Auth::user()->id]);
+
+        return redirect()->route('curso.show', compact('curso'));
+    }
+
+    public function inscribirse(Curso $curso)
+    {
+        $curso->users()->attach( Auth::user()->id );
+
+        return redirect()->route('curso.show', compact('curso'));
     }
 }

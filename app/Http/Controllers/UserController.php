@@ -8,6 +8,9 @@ use App\Models\Institucion;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\Rules\Password;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+
 class UserController extends Controller
 {
     /**
@@ -22,9 +25,12 @@ class UserController extends Controller
 
     public function index()
     {
+        Gate::authorize('admin'); // Gate para sólo admin
+
         $users = User::get();
 
-        foreach ($users as $user){
+        foreach ($users as $user)
+        {
             echo $user->name;
         }
     }
@@ -88,6 +94,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $this->authorize('viewAny', [User::class, $user]);
+
         return view('user.userSettings', compact('user'));
     }
 
@@ -99,6 +107,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', [User::class, $user]);
         return view('user.userModify', compact('user'));
     }
 
@@ -111,9 +120,11 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $this->authorize('update', [User::class, $user]);
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'edad' => ['required'],
             'ocupacion' => ['required', 'string'],
         ]);
@@ -131,8 +142,16 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('delete', [User::class, $user]);
+
         $user->delete();
 
         return redirect()->route('login')->with('message', 'El usuario ha sido ELIMINADO');
+    }
+
+    public function inscripciones()
+    {
+        $user = Auth::user();
+        return view('user.userInscripciones', compact('user'));
     }
 }

@@ -34,8 +34,8 @@ class Curso extends Model
         return ucfirst($value);
     }
 
-    public function creaciones () { // Relacion n:m con Cursos para cursos creados
-        return $this->belongsToMany(User::class);
+    public function creadores () { // Relacion n:m con Creadores para cursos creados
+        return $this->belongsToMany(Creador::class);
     }
 
     public function users () { // Relacion n:m con Cursos para cursos en carrito

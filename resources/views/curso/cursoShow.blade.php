@@ -26,11 +26,19 @@
               <div class="col-sm-12 col-lg-6 col-md-6 text-center">
                   <div class="card m-auto" style="width: 18rem;">
                       <div class="card-header">
-                          ${{ $curso->costo }}
+                          $ {{ $curso->costo }}
                       </div>
                       <div class="card-body">
-                          <a href="#" class="btn btn-primary mb-2">Incribirse ahora</a>
-                          <a href="#" class="btn btn-warning">Agregar al carrito</a>
+                        @if ( $bool_inscrito === true )
+                            <a href="{{ route('curso.inscribirse', [$curso]) }}" class="btn btn-primary mb-2">Inscribirse ahora</a>
+                        @else
+                            <a href="{{ route('curso.cancelarSuscripcion', [$curso]) }}" class="btn btn-primary mb-2">Cancelar suscripción</a>
+                        @endif
+
+                        @if ( $bool_creado === false )
+                            <a href="{{ route('curso.edit', [$curso]) }}" class="btn btn-warning mb-2">Modificar curso</a>
+                        @endif
+
                       </div>
                       <ul class="list-group list-group-item">
                           <li class="list-group-item">{{ $curso->categoria }}</li>

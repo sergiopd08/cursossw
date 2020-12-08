@@ -86,8 +86,4 @@ class User extends Authenticatable
     public function cursos () { // Relacion n:m con Users para cursos en carrito
         return $this->belongsToMany(Curso::class);
     }
-
-    public function creaciones () { // Relacion n:m con Users para cursos creados
-        return $this->belongsToMany(Curso::class);
-    }
 }

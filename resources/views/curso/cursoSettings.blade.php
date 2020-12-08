@@ -63,22 +63,20 @@
                                 <input for="categoria" type="text" id="categoria" name="categoria" class="form-control" value="{{ $curso->categoria }}" readonly>
                             </div>
                         </div>
-                        @can('admin') <!-- Si es admin puede ver los botones --!>
-                            <div class="row text-center mt-3 mb-1">
+                        <div class="row text-center mt-3 mb-1">
 
-                                <div class="col">
-                                    <button type="button" class="btn btn-warning"> <a href="{{ route('curso.modify', [$curso]) }}"> Modificar </a> </button>
-                                </div>
-
-                                <div class="col">
-                                    <form action="{{ route('curso.destroy', [$curso]) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form>
-                                </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-warning"> <a href="{{ route('curso.modify', [$curso]) }}"> Modificar </a> </button>
                             </div>
-                        @endcan('admin')
+
+                            <div class="col">
+                                <form action="{{ route('curso.destroy', [$curso]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
 
             </div>
