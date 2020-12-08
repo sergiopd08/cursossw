@@ -7,14 +7,13 @@
         <div class="container-fluid align-self-center">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center mb-3">
-                    <img src="icon.png" style="width: 100px">
+                    <img src="{{asset('images/perfilUsuario.png')}}" style="width: 100px">
                 </div>
                 <div class="col-12 d-flex justify-content-center">
                     <h6>{{ $user->name }}</h6>
                 </div>
                 <div class="col-12 d-flex justify-content-center">
                     <h6>ID: {{ $user->id }} </h6>
-                    <h6> # </h6>
                 </div>
             </div>
         </div>
@@ -53,7 +52,7 @@
     @endif
 
     <div class="row">
-        <div class="col-lg-3 col-sm-12">
+        <div class="col-lg-3 col-sm-12 mb-4">
             <div class="card">
                 <h6 class="card-header">Ajustes de usuario</h6>
                 <nav class="nav nav-tabs flex-column">

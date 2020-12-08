@@ -1,0 +1,30 @@
+#btn-comp,
+#btn-fav,
+#btn-can,
+#btn-ins,
+#btn-mod,
+#btn-vamos {
+    background-color: #ff105f;
+    border-color: #ff105f;
+    color: #fff;
+}
+
+#btn-comp:hover,
+#btn-fav:hover,
+#btn-can:hover,
+#btn-ins:hover,
+#btn-mod:hover,
+#btn-vamos:hover {
+    border-color: #e40f56;
+    background-color: #e40f56;
+    color: black;
+}
+
+#cover {
+    background-color: #dedede;
+}
+
+#card-h {
+    background-color: #FFAC07;
+    color: white;
+}

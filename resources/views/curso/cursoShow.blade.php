@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title','Curso de')
-<link rel="stylesheet" href="{{asset('css/cursoShow.css')}}">
+<link rel="stylesheet" href="{{asset('css/curso/cursoShow.css')}}">
 
 @section('content')
 
@@ -12,31 +12,31 @@
 
 <!--Jumbotron-->
 <div class="container-jumbotron">
-  <div class="cover jumbotron jumbotron-fluid mt-2" id="cover">
+  <div class="cover jumbotron jumbotron-fluid mt-2" id="cover">>
       <div class="container-fluid">
           <div class="row align-items-center">
-              <div class="col-5">
+              <div class="col-lg-5 col-sm-12 text-center">
                   <h1 class="display-4 text-uppercase" id="nombre-curso">{{ $curso->nombre }}</h1>
                   <p class="lead" id="desc-curso">{{ $curso->descripcion }}</p>
-                  <a href="#" class="btn btn-outline-secondary">Compartir</a>
-                  <a href="#" class="btn btn-outline-secondary">Añadir a favoritos</a>
+                  <a href="#" class="btn btn-outline-secondary" id="btn-comp">Compartir</a>
+                  <a href="#" class="btn btn-outline-secondary" id="btn-fav">Añadir a favoritos</a>
               </div>
               <div class="col-1">
               </div>
-              <div class="col-sm-12 col-lg-6 col-md-6 text-center">
+              <div class="col-sm-12 text-center col-lg-6 text-center col-md-12 mt-4 text-center">
                   <div class="card m-auto" style="width: 18rem;">
-                      <div class="card-header">
+                      <div class="card-header" id="card-h">
                           $ {{ $curso->costo }}
                       </div>
                       <div class="card-body">
                         @if ( $bool_inscrito === true )
-                            <a href="{{ route('curso.inscribirse', [$curso]) }}" class="btn btn-primary mb-2">Inscribirse ahora</a>
+                            <a href="{{ route('curso.inscribirse', [$curso]) }}" class="btn btn-primary mb-2" id="btn-ins">Inscribirse ahora</a>
                         @else
-                            <a href="{{ route('curso.cancelarSuscripcion', [$curso]) }}" class="btn btn-primary mb-2">Cancelar suscripción</a>
+                            <a href="{{ route('curso.cancelarSuscripcion', [$curso]) }}" class="btn btn-primary mb-2" id="btn-can">Cancelar suscripción</a>
                         @endif
 
                         @if ( $bool_creado === false )
-                            <a href="{{ route('curso.edit', [$curso]) }}" class="btn btn-warning mb-2">Modificar curso</a>
+                            <a href="{{ route('curso.edit', [$curso]) }}" class="btn btn-warning mb-2" id="btn-mod">Modificar curso</a>
                         @endif
 
                       </div>
@@ -74,7 +74,7 @@
               <div class="card-body">
                   <h5 class="card-title">Crea contenido</h5>
                   <p class="card-text">Crea un curso en vídeo en línea, llega a estudiantes de todo el mundo y gana dinero</p>
-                  <a href="#" class="btn btn-primary">Vamos</a>
+                  <a href="#" class="btn btn-primary" id="btn-vamos">Vamos</a>
               </div>
           </div>
       </div>

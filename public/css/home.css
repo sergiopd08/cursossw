@@ -43,10 +43,17 @@
     height: 100%;
 }
 
-#footer {
-    background: linear-gradient(90deg, #ff105f, #ffad06);
+#btn-ver {
+    border-color: #ff105f;
+    background-color: #ff105f;
 }
 
-#footer a {
+#btn-ver:hover {
+    background-color: #e40f56;
+    color: black;
+}
+
+#card-h {
+    background-color: #FFAC07;
     color: white;
 }

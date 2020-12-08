@@ -45,16 +45,19 @@
     <div class="container mt-4 mb-4">
         <div class="row text-center">
             @foreach ($cursos as $curso)
-            <div class="col-4 mt-4">
+            <div class="col col-md-6 col-lg-4 mt-4">
                 <div class="card m-auto" style="width: 18rem;">
-                    <div class="card-header">
+                    <div class="card-header" id="card-h">
                         <h6>{{ $curso->nombre }}</h6>
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('curso.show', [$curso->id]) }}" class="btn btn-secondary mb-2">Ver</a>
+                        <a href="{{ route('curso.show', [$curso->id]) }}" class="btn btn-secondary mb-2" id="btn-ver">Ver</a>
                     </div>
                     <ul class="list-group list-group-item">
                         <li class="list-group-item">{{ $curso->categoria }}</li>
+                    </ul>
+                    <ul class="list-group list-group-item">
+                        <li class="list-group-item">$ {{ $curso->costo }}</li>
                     </ul>
                 </div>
             </div>
