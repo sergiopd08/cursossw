@@ -161,13 +161,13 @@ class CursoController extends Controller
     {
         DB::delete('delete from curso_user where curso_id = ? and user_id = ?', [$curso->id, Auth::user()->id]);
 
-        return redirect()->route('curso.show', compact('curso'));
+        return redirect()->route('curso.show', compact('curso'))->with('message', 'Has cancelado la inscripcion a este curso');
     }
 
     public function inscribirse(Curso $curso)
     {
         $curso->users()->attach( Auth::user()->id );
 
-        return redirect()->route('curso.show', compact('curso'));
+        return redirect()->route('curso.show', compact('curso'))->with('message', 'Te has inscrito a este curso');
     }
 }

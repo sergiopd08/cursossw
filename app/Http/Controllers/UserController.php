@@ -27,12 +27,9 @@ class UserController extends Controller
     {
         Gate::authorize('admin'); // Gate para sólo admin
 
-        $users = User::get();
+        $users = User::all();
 
-        foreach ($users as $user)
-        {
-            echo $user->name;
-        }
+        return view('user.userIndex', compact('users'));
     }
 
     /**
@@ -149,9 +146,10 @@ class UserController extends Controller
         return redirect()->route('login')->with('message', 'El usuario ha sido ELIMINADO');
     }
 
-    public function inscripciones()
+    public function inscripciones(User $user)
     {
-        $user = Auth::user();
-        return view('user.userInscripciones', compact('user'));
+      $this->authorize('viewAny', [User::class, $user]);
+
+      return view('user.userInscripciones', compact('user'));
     }
 }

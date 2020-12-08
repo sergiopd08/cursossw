@@ -18,12 +18,7 @@ class CreadorController extends Controller
      */
     public function index()
     {
-        if ( Creador::find( Auth::user()->id ) ) {
-            echo "Es creador";
-        }
-        else {
-            echo "No es creador";
-        }
+      //
     }
 
     /**
@@ -55,7 +50,7 @@ class CreadorController extends Controller
      */
     public function show(Creador $creador)
     {
-        //
+        $this->authorize('viewAny', [Creador::class, $creador]);
     }
 
     /**
@@ -94,7 +89,7 @@ class CreadorController extends Controller
 
     public function creaciones(Creador $creador)
     {
-        //Gate::authorize('admin'); // Gate para sólo admin
-        return view('creador.creadorCreaciones', compact('creador'));
+      $this->authorize('viewAny', [Creador::class, $creador]);
+      return view('creador.creadorCreaciones', compact('creador'));
     }
 }
