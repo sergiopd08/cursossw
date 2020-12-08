@@ -28,7 +28,7 @@ class CursoFactory extends Factory
             'idioma'=>$this->faker->randomElement(['Español','Inglés']),
             'aprendizajes'=>$this->faker->sentence(),
             'requisitos'=>$this->faker->sentence(),
-            'categoria'=>$this->faker->randomElement(['Ciencia','Arte','Tecnología','Humanidades'])
+            'categoria'=>$this->faker->randomElement(['Ciencia y Tecnología','Arte','Humanidades','Negocios']),
         ];
     }
 }
