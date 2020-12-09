@@ -122,6 +122,24 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="edad-input">Nombre de Institución Afiliada:</label>
+                                    <input value="{{ $institucion->nombre }}" type="text" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="edad-input">Dirección de Institución Afiliada:</label>
+                                    <input value="{{ $institucion->direccion }}" type="text" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">

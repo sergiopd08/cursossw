@@ -25,9 +25,18 @@
                 <li class="nav-item active">
                 <a class="nav-link" href="{{ route('dashboard') }}">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Cursos</a>
-                </li>
+
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Cursos</a>
+
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Crear curso</a>
+                        <a class="dropdown-item" href="#">Creados</a>
+                        <a class="dropdown-item" href="#">Inscritos</a>
+                    </div>
+
+                </div>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Enseña</a>
                 </li>
@@ -44,11 +53,20 @@
                     </li>
                 </form>
 
+                @can('admin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('user.index') }}">
+                            UsersData
+                        </a>
+                    </li>
+                @endcan
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.show', [Auth::user()]) }}"> {{ Auth::user()->name }} <!--Modificación pendiente-->
                         <img src="{{asset('images/egg.png')}}" height="30px" alt="Icono Usuario">
                     </a>
                 </li>
+
             </ul>
         </div>
     </nav>

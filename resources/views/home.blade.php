@@ -51,7 +51,7 @@
                         <h6>{{ $curso->nombre }}</h6>
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('curso.show', [$curso->id]) }}" class="btn btn-secondary mb-2" id="btn-ver">Ver</a>
+                        <a href="{{ route('curso.show', [$curso]) }}" class="btn btn-secondary mb-2" id="btn-ver">Ver</a>
                     </div>
                     <ul class="list-group list-group-item">
                         <li class="list-group-item">{{ $curso->categoria }}</li>

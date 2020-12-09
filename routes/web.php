@@ -36,7 +36,7 @@ Route::middleware('auth')->group( function () { // MIddleware group
     // Pivote cursos inscritos user_curso
     Route::get('user/{user}/inscripciones', [UserController::class, 'inscripciones'])->name('user.inscripciones');
 
-    Route::resource('creador', CreadorController::class);
+    //Route::resource('creador', CreadorController::class);
 
     // Pivote cursos creados user_curso
     Route::get('creador/{creador}/creaciones', [CreadorController::class, 'creaciones'])->name('creador.creaciones');

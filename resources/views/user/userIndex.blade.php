@@ -45,25 +45,27 @@
     <div class="container mt-4 mb-4">
         <div class="row text-center">
             @foreach ($users as $user)
-            <div class="col-4 mt-4">
+            <div class="col col-md-6 col-lg-4 mt-4">
                 <div class="card m-auto" style="width: 18rem;">
-                    <div class="card-header">
+                    <div class="card-header" id="card-h">
                         <h6>{{ $user->name }}</h6>
                     </div>
                     <ul class="list-group list-group-item">
-                        <li class="list-group-item">Email: {{ $user->id }}</li>
-                        <li class="list-group-item">Email: {{ $user->email }}</li>
-                        <li class="list-group-item">Edad: {{ $user->edad }}</li>
-                        <li class="list-group-item">Ocupacion: {{ $user->ocupacion }}</li>
+                        <li class="list-group-item"><b>Email:</b> {{ $user->email }}</li>
+                    </ul>
+                    <ul class="list-group list-group-item">
+                        <li class="list-group-item"><b>Edad:</b> {{ $user->edad }}</li>
+                    </ul>
+                    <ul class="list-group list-group-item">
+                        <li class="list-group-item"><b>Ocupación:</b> {{ $user->ocupacion }}</li>
                     </ul>
                     <div class="card-body">
-                        <a href="{{ route('user.show', [$user->id]) }}" class="btn btn-secondary mb-2">Ver</a>
+                        <a href="{{ route('user.show', [$user]) }}" class="btn btn-secondary mb-2" id="btn-ver">Ver</a>
                     </div>
                 </div>
             </div>
             @endforeach
         </div>
-        <a href="{{route('cursos.pdf')}}">Descargar PDF</a>
     </div>
     <!---->
 

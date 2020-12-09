@@ -92,8 +92,9 @@ class UserController extends Controller
     public function show(User $user)
     {
         $this->authorize('viewAny', [User::class, $user]);
+        $institucion = Institucion::find($user->institucion_id);
 
-        return view('user.userSettings', compact('user'));
+        return view('user.userSettings', compact('user', 'institucion'));
     }
 
     /**
@@ -105,7 +106,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $this->authorize('update', [User::class, $user]);
-        return view('user.userModify', compact('user'));
+        $institucion = Institucion::find($user->institucion_id);
+
+        return view('user.userModify', compact('user', 'institucion'));
     }
 
     /**
