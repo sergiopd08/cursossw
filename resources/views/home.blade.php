@@ -63,8 +63,16 @@
             </div>
             @endforeach
         </div>
-        <a href="{{route('cursos.pdf')}}">Descargar PDF</a>
     </div>
     <!---->
 
+    <!--PDF-->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <a href="{{route('cursos.pdf')}}" class="btn btn-warning mb-4">Descargar PDF</a>
+            </div>
+        </div>
+    </div>
+    
 @endsection

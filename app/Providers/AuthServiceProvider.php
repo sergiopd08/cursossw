@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Creador;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;
 
@@ -32,6 +34,13 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('admin', function($user) { // Gate usuario admin
             return $user->name === "ADMIN";
+        });
+
+        Gate::define('create', function(){
+            if(empty(DB::select('SELECT * FROM creadores WHERE user_id =?', [Auth::user()->id]))){
+                return false;
+            }
+            return true;
         });
     }
 }

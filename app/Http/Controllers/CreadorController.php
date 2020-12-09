@@ -50,7 +50,9 @@ class CreadorController extends Controller
      */
     public function show(Creador $creador)
     {
+        $creadores = Creador::all();
         $this->authorize('viewAny', [Creador::class, $creador]);
+        dd($creadores);
     }
 
     /**
@@ -92,4 +94,12 @@ class CreadorController extends Controller
       $this->authorize('viewAny', [Creador::class, $creador]);
       return view('creador.creadorCreaciones', compact('creador'));
     }
+
+    public function verCreaciones(User $user){
+        dd(Creador::find($user->id));
+        if(Creador::find($user->id)){
+            return $user;
+        }
+    }
+
 }

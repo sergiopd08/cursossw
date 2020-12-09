@@ -18,20 +18,19 @@
     color: white;
 }
 
-#cover {
-    max-height: 70vh;
-    object-fit: cover;
-    background-color: #dedede;
+#btn-ver {
+    background-color: #ff105f;
+    border-color: #ff105f;
+    color: #fff;
 }
 
-#user-jumbo {
-    margin-bottom: 0;
+#btn-ver:hover {
+    border-color: #e40f56;
+    background-color: #e40f56;
+    color: black;
 }
 
-#mid-bar {
-    margin-bottom: 50px;
-}
-
-#user-info {
-    margin-bottom: 50px;
+#card-h {
+    background-color: #FFAC07;
+    color: white;
 }

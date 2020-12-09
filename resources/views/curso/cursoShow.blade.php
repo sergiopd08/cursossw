@@ -74,7 +74,7 @@
               <div class="card-body">
                   <h5 class="card-title">Crea contenido</h5>
                   <p class="card-text">Crea un curso en vídeo en línea, llega a estudiantes de todo el mundo y gana dinero</p>
-                  <a href="#" class="btn btn-primary" id="btn-vamos">Vamos</a>
+                  <a href="{{route('curso.create')}}" class="btn btn-primary" id="btn-vamos">Vamos</a>
               </div>
           </div>
       </div>

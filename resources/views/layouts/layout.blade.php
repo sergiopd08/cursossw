@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('css/layout.css')}}">
     <title>@yield('title')</title>
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <!--NavBar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="">
@@ -30,28 +30,19 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Cursos</a>
 
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Crear curso</a>
-                        <a class="dropdown-item" href="#">Creados</a>
-                        <a class="dropdown-item" href="#">Inscritos</a>
-                    </div>
+                        <a class="dropdown-item" href="{{route('curso.create')}}">Crear curso</a>
+                        <a class="dropdown-item" href="{{route('user.inscripciones',[Auth::user()])}}">Inscritos</a>
 
+                        @can('create')
+                        <a class="dropdown-item" href="{{route('creador.creaciones',[Auth::user()])}}">Creados</a>
+                        @endcan
+                        
+                    </div>
                 </div>
 
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link" href="#">Enseña</a>
-                </li>
-
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                        {{ __('Cerrar sesión') }}
-                        </a>
-                    </li>
-                </form>
+                </li>-->
 
                 @can('admin')
                     <li class="nav-item">
@@ -67,6 +58,18 @@
                     </a>
                 </li>
 
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                        {{ __('Cerrar sesión') }}
+                        </a>
+                    </li>
+                </form>
+
             </ul>
         </div>
     </nav>
@@ -75,6 +78,9 @@
     @yield('content')
 
     <!-- Footer -->
+
+
+    <div class="wrapper flex-grow-1"></div>
     <footer id="footer" class="pb-4 pt-4">
         <div class="container">
             <div class="row text-center">
